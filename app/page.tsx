@@ -138,6 +138,7 @@ interface IStatus {
 const DynamicKanbanBoard = () => {
   // State management for kanban board data
   const [statuses, setStatuses] = useState<IStatus[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [features, setFeatures] = useState<any[]>([])
   const [newColumnName, setNewColumnName] = useState("")
   const [isAddingColumn, setIsAddingColumn] = useState(false)
