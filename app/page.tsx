@@ -96,8 +96,8 @@ interface IKanbanDetails {
 interface IFeature {
   id: string
   name: string
-  startAt: Date
-  endAt: Date
+  startAt: number
+  endAt: number
   statusId: string
   status: {
     id: string
@@ -117,6 +117,7 @@ interface IFeature {
     id: string
     name: string
   }
+  progress: number
 }
 
 /**
@@ -137,7 +138,7 @@ interface IStatus {
 const DynamicKanbanBoard = () => {
   // State management for kanban board data
   const [statuses, setStatuses] = useState<IStatus[]>([])
-  const [features, setFeatures] = useState<IFeature[]>([])
+  const [features, setFeatures] = useState<any[]>([])
   const [newColumnName, setNewColumnName] = useState("")
   const [isAddingColumn, setIsAddingColumn] = useState(false)
   const [kanbanDetails, setKanbanDetails] = useState<IKanbanDetails>()
@@ -337,7 +338,7 @@ const DynamicKanbanBoard = () => {
                     <KanbanCards>
                       {features
                         .filter((feature: { status: { id: string } }) => feature.status.id === status.id)
-                        .map((feature: any, index: number) => (
+                        .map((feature: IFeature, index: number) => (
                           <KanbanCard
                             key={feature.id}
                             id={feature.id}
